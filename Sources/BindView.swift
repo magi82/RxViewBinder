@@ -22,7 +22,7 @@
 
 import RxSwift
 
-public protocol View: class {
+public protocol BindView: class {
   associatedtype ViewModel
   
   var disposeBag: DisposeBag { get set }
@@ -35,7 +35,7 @@ public protocol View: class {
 // MARK: - disposeBag
 
 private var disposeBagKey: String = "disposeBag"
-extension View {
+extension BindView {
   
   public var disposeBag: DisposeBag {
     get {
@@ -65,7 +65,7 @@ extension View {
 // MARK: - viewModel
 
 private var viewModelKey: String = "viewModel"
-extension View {
+extension BindView {
   
   public var viewModel: ViewModel? {
     get {
