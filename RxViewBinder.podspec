@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'RxViewBinder'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'RxViewBinder is a simple one-way architecture.'
   s.description      = <<-DESC
 RxViewBinder is a one-way architecture using Reactive Extension.

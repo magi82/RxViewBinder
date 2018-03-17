@@ -82,11 +82,22 @@ extension BindView {
                                &viewModelKey,
                                newValue,
                                objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-      
-      if let viewModel = newValue {
-        state(viewModel: viewModel)
-        command(viewModel: viewModel)
-      }
+
+      let viewController = self as? UIViewController
+      viewController?.rx.methodInvoked(#selector(UIViewController.loadView))
+        .asObservable()
+        .map { _ in newValue }
+        .subscribe(onNext: { [weak self] in
+          self?.binding(viewModel: $0)
+        })
+        .disposed(by: self.disposeBag)
+    }
+  }
+  
+  func binding(viewModel: ViewModel?) {
+    if let viewModel = viewModel {
+      state(viewModel: viewModel)
+      command(viewModel: viewModel)
     }
   }
 }
