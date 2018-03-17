@@ -20,7 +20,13 @@ It is implemented as a reactive extension.
 - **For iOS 9+ projects** with [CocoaPods](https://cocoapods.org):
 
 ```ruby
-pod 'RxViewBinder', '~> 0.1.0'
+pod 'RxViewBinder', '~> 0.2.0'
+```
+
+- **For iOS 9+ projects** with [Carthage](https://github.com/Carthage/Carthage):
+
+```ruby
+github "magi82/RxViewBinder" ~> 0.2.0
 ```
 
 ## Author
