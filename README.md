@@ -25,7 +25,7 @@ It is implemented as a reactive extension.
 <br>You need to bind the action and state in the constructor of the state structure.
 
 ```swift
-class SampleViewModel: ViewBindable {
+final class SampleViewModel: ViewBindable {
   
   enum Command {
     case fetch
@@ -64,7 +64,7 @@ class SampleViewModel: ViewBindable {
   }
 ```
 
-- Or you can also stream a stream without creating an observer.
+- Or you can simply send the stream without creating an observer.
 
 ```swift
   func binding(command: Command) {
@@ -81,7 +81,7 @@ class SampleViewModel: ViewBindable {
 <br>It injects the view model at initialization.
 
 ```swift
-class ViewController: UIViewController, BindView {
+final class ViewController: UIViewController, BindView {
 
   typealias ViewModel = SampleViewModel
   
