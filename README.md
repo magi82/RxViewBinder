@@ -14,18 +14,118 @@ It is implemented as a reactive extension.
 
 <img src="https://github.com/magi82/RxViewBinder/blob/develop/Resources/flow.png?raw=true">
 
-## Usage
+## Usage (ViewBindable)
 
-- BindView
+- Create a ViewModel class that implements ViewBindable.
+<br>Command, Action, State must be implemented.
+<br>Command is enum type.
+<br>Action, State is structure type.
+
+*important!!*
+<br>You need to bind the action and state in the constructor of the state structure.
 
 ```swift
-blahblah()
+class SampleViewModel: ViewBindable {
+  
+  enum Command {
+    case fetch
+  }
+  
+  struct Action {
+    let value: PublishRelay<String> = PublishRelay()
+  }
+  
+  struct State {
+    let value: Driver<String>
+    
+    init(action: Action) {
+      // Action and state binding
+      value = action.value.asDriver(onErrorJustReturn: "")
+    }
+  }
+  
+  let action = Action()
+  lazy var state = State(action: self.action)
+}
 ```
 
-- ViewBindable
+- implements a binding method that accepts a command stream and sends the stream to action.
+<br>When changing the state of ui, only action is used.
+<br>state is used only when the view receives the state of ui.
 
 ```swift
-blahblah()
+  func binding(command: Command) {
+    switch command {
+    case .fetch:
+      Observable<String>.just("test")
+        .bind(to: action.value)
+        .disposed(by: self.disposeBag)
+    }
+  }
+```
+
+- Or you can also stream a stream without creating an observer.
+
+```swift
+  func binding(command: Command) {
+    switch command {
+    case .fetch:
+      action.value.accept("test")
+    }
+  }
+```
+
+## Usage (BindView)
+
+- Implement the BindView protocol on the view.
+<br>It injects the view model at initialization.
+
+```swift
+class ViewController: UIViewController, BindView {
+
+  typealias ViewModel = SampleViewModel
+  
+  init(viewModel: ViewModel) {
+    defer { self.viewModel = viewModel }
+    
+    super.init(nibName: nil, bundle: nil)
+  }
+}
+```
+
+- If you are using a storyboard, you have to inject it in a different way.
+
+```swift
+  let vc = ViewController()
+  vc.viewModel = SampleViewModel()
+```
+
+or 
+
+```swift
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    
+    self.viewModel = ViewModel()
+  }
+```
+
+- Implements the command and state methods.
+
+```swift
+  func command(viewModel: ViewModel) {
+    self.rx.methodInvoked(#selector(UIViewController.viewDidLoad))
+      .map { _ in ViewModel.Command.fetch }
+      .bind(to: viewModel.command)
+      .disposed(by: self.disposeBag)
+  }
+  
+  func state(viewModel: ViewModel) {
+    viewModel.state
+      .value
+      .drive(onNext: { print($0) })
+      .disposed(by: self.disposeBag)
+  }
 ```
 
 ## Requirements
