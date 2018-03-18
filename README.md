@@ -10,10 +10,23 @@ Simple and easy to implement. :sunny:
 
 It is implemented as a reactive extension.
 
-## Sample
+## Flow
 
 <img src="https://github.com/magi82/RxViewBinder/blob/develop/Resources/flow.png?raw=true">
 
+## Usage
+
+- BindView
+
+```swift
+blahblah()
+```
+
+- ViewBindable
+
+```swift
+blahblah()
+```
 
 ## Requirements
 
