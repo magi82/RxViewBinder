@@ -10,6 +10,11 @@ Simple and easy to implement. :sunny:
 
 It is implemented as a reactive extension.
 
+## Sample
+
+<img src="https://github.com/magi82/RxViewBinder/blob/develop/Resources/flow.png?raw=true" width="240">
+
+
 ## Requirements
 
 - Swift 4.0+
