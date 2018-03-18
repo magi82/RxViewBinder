@@ -12,7 +12,7 @@ It is implemented as a reactive extension.
 
 ## Sample
 
-<img src="https://github.com/magi82/RxViewBinder/blob/develop/Resources/flow.png?raw=true" width="240">
+<img src="https://github.com/magi82/RxViewBinder/blob/develop/Resources/flow.png?raw=true">
 
 
 ## Requirements
