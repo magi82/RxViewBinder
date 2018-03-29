@@ -30,6 +30,7 @@ public protocol BindView: class {
   
   func state(viewModel: ViewModel)
   func command(viewModel: ViewModel)
+  func binding(viewModel: ViewModel?)
 }
 
 // MARK: - disposeBag
@@ -94,7 +95,7 @@ extension BindView {
     }
   }
   
-  func binding(viewModel: ViewModel?) {
+  public func binding(viewModel: ViewModel?) {
     if let viewModel = viewModel {
       state(viewModel: viewModel)
       command(viewModel: viewModel)
