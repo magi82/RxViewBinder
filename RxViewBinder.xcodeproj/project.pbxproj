@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		101CCE80206C8ADE0067BA69 /* BindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101CCE7F206C8ADE0067BA69 /* BindCell.swift */; };
+		101CCE82206C8CFA0067BA69 /* BindCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 101CCE81206C8CFA0067BA69 /* BindCell.swift */; };
 		1049B6CB205D0BBA00D71E3E /* RxViewBinder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1049B6C9205D0BBA00D71E3E /* RxViewBinder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1075F9C0205D0BF300D0B18A /* BindView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075F9BE205D0BF300D0B18A /* BindView.swift */; };
 		1075F9C1205D0BF300D0B18A /* ViewBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1075F9BF205D0BF300D0B18A /* ViewBindable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		101CCE7F206C8ADE0067BA69 /* BindCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindCell.swift; sourceTree = "<group>"; };
+		101CCE81206C8CFA0067BA69 /* BindCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BindCell.swift; path = Sources/BindCell.swift; sourceTree = SOURCE_ROOT; };
 		1049B6C6205D0BBA00D71E3E /* RxViewBinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxViewBinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1049B6C9205D0BBA00D71E3E /* RxViewBinder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RxViewBinder.h; sourceTree = "<group>"; };
 		1049B6CA205D0BBA00D71E3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 			children = (
 				1075F9BE205D0BF300D0B18A /* BindView.swift */,
 				1075F9BF205D0BF300D0B18A /* ViewBindable.swift */,
-				101CCE7F206C8ADE0067BA69 /* BindCell.swift */,
+				101CCE81206C8CFA0067BA69 /* BindCell.swift */,
 				1049B6C9205D0BBA00D71E3E /* RxViewBinder.h */,
 				1049B6CA205D0BBA00D71E3E /* Info.plist */,
 			);
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1075F9C0205D0BF300D0B18A /* BindView.swift in Sources */,
-				101CCE80206C8ADE0067BA69 /* BindCell.swift in Sources */,
+				101CCE82206C8CFA0067BA69 /* BindCell.swift in Sources */,
 				1075F9C1205D0BF300D0B18A /* ViewBindable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
