@@ -79,12 +79,16 @@ extension ViewBindable {
       }
       
       let command: PublishRelay<Command> = PublishRelay()
-      command.subscribe(onNext: binding).disposed(by: disposeBag)
+      command
+        .bind { [weak self] in
+          self?.binding(command: $0)
+        }
+        .disposed(by: self.disposeBag)
       
       objc_setAssociatedObject(self,
                                &commandKey,
                                command,
-                               objc_AssociationPolicy.OBJC_ASSOCIATION_ASSIGN)
+                               objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
       return command
     }
   }
