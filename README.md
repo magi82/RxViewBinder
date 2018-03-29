@@ -3,6 +3,7 @@
 ![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
 [![Platform](https://img.shields.io/cocoapods/p/RxViewBinder.svg?style=flat)](http://cocoapods.org/pods/RxViewBinder)
 [![Version](https://img.shields.io/cocoapods/v/RxViewBinder.svg?style=flat)](http://cocoapods.org/pods/RxViewBinder)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/RxViewBinder.svg?style=flat)](http://cocoapods.org/pods/RxViewBinder)
 
 RxViewBinder is a simple one-way architecture.<br>
@@ -77,7 +78,7 @@ final class SampleViewModel: ViewBindable {
 
 ## Usage (BindView)
 
-- Implement the BindView protocol on the view.
+- Implement the BindView protocol on the view controller.
 <br>It injects the view model at initialization.
 
 ```swift
