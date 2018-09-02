@@ -28,10 +28,10 @@ import RxViewBinder
 
 final class ViewController: UIViewController, BindView {
   
-  typealias ViewModel = SampleViewModel
+  typealias ViewBinder = SampleViewBinder
   
-  init(viewModel: ViewModel) {
-    defer { self.viewModel = viewModel }
+  init(viewBinder: ViewBinder) {
+    defer { self.viewBinder = viewBinder }
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -40,15 +40,15 @@ final class ViewController: UIViewController, BindView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func command(viewModel: ViewModel) {
+  func command(viewBinder: ViewBinder) {
     self.rx.methodInvoked(#selector(UIViewController.viewDidLoad))
-      .map { _ in ViewModel.Command.fetch }
-      .bind(to: viewModel.command)
+      .map { _ in ViewBinder.Command.fetch }
+      .bind(to: viewBinder.command)
       .disposed(by: self.disposeBag)
   }
   
-  func state(viewModel: ViewModel) {
-    viewModel.state
+  func state(viewBinder: ViewBinder) {
+    viewBinder.state
       .value
       .drive(onNext: { print($0) })
       .disposed(by: self.disposeBag)

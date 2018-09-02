@@ -26,7 +26,7 @@ import RxSwift
 import RxCocoa
 import RxViewBinder
 
-final class SampleViewModel: ViewBindable {
+final class SampleViewBinder: ViewBindable {
   
   enum Command {
     case fetch

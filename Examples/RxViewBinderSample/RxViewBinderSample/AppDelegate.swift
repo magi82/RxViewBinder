@@ -35,8 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       window.makeKeyAndVisible()
       window.backgroundColor = .white
       
-      let viewModel = SampleViewModel()
-      let vc = ViewController(viewModel: viewModel)
+      let viewBinder = SampleViewBinder()
+      let vc = ViewController(viewBinder: viewBinder)
       window.rootViewController = vc
       
       return window

@@ -17,7 +17,7 @@ It is implemented as a reactive extension.
 
 ## Usage (ViewBindable)
 
-- Create a ViewModel class that implements ViewBindable.
+- Create a ViewBinder class that implements ViewBindable.
 <br>Command, Action, State must be implemented.
 <br>Command is enum type.
 <br>Action, State is structure type.
@@ -26,7 +26,7 @@ It is implemented as a reactive extension.
 <br>You need to bind the action and state in the constructor of the state structure.
 
 ```swift
-final class SampleViewModel: ViewBindable {
+final class SampleViewBinder: ViewBindable {
   
   enum Command {
     case fetch
@@ -79,15 +79,15 @@ final class SampleViewModel: ViewBindable {
 ## Usage (BindView)
 
 - Implement the BindView protocol on the view controller.
-<br>It injects the view model at initialization.
+<br>It injects the view binder at initialization.
 
 ```swift
 final class ViewController: UIViewController, BindView {
 
-  typealias ViewModel = SampleViewModel
+  typealias ViewBinder = SampleViewBinder
   
-  init(viewModel: ViewModel) {
-    defer { self.viewModel = viewModel }
+  init(viewBinder: ViewBinder) {
+    defer { self.viewBinder = viewBinder }
     
     super.init(nibName: nil, bundle: nil)
   }
@@ -98,7 +98,7 @@ final class ViewController: UIViewController, BindView {
 
 ```swift
   let vc = ViewController()
-  vc.viewModel = SampleViewModel()
+  vc.viewBinder = SampleViewBinder()
 ```
 
 or 
@@ -107,22 +107,22 @@ or
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     
-    self.viewModel = ViewModel()
+    self.viewBinder = ViewBinder()
   }
 ```
 
 - Implements the command and state methods.
 
 ```swift
-  func command(viewModel: ViewModel) {
+  func command(viewBinder: ViewBinder) {
     self.rx.methodInvoked(#selector(UIViewController.viewDidLoad))
-      .map { _ in ViewModel.Command.fetch }
-      .bind(to: viewModel.command)
+      .map { _ in ViewBinder.Command.fetch }
+      .bind(to: viewBinder.command)
       .disposed(by: self.disposeBag)
   }
   
-  func state(viewModel: ViewModel) {
-    viewModel.state
+  func state(viewBinder: ViewBinder) {
+    viewBinder.state
       .value
       .drive(onNext: { print($0) })
       .disposed(by: self.disposeBag)
