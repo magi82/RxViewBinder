@@ -23,15 +23,15 @@
 import RxSwift
 
 public protocol BindCell: class {
-  associatedtype ViewModel
+  associatedtype ViewBinder
   
   var disposeBag: DisposeBag { get set }
-  var viewModel: ViewModel? { get set }
+  var viewBinder: ViewBinder? { get set }
   
-  func state(viewModel: ViewModel)
-  func command(viewModel: ViewModel)
+  func state(viewBinder: ViewBinder)
+  func command(viewBinder: ViewBinder)
   
-  func binding(viewModel: ViewModel?)
+  func binding(viewBinder: ViewBinder?)
 }
 
 // MARK: - disposeBag
@@ -64,15 +64,15 @@ extension BindCell {
   }
 }
 
-// MARK: - viewModel
+// MARK: - viewBinder
 
-private var viewModelKey: String = "viewModel"
+private var viewBinderKey: String = "viewBinder"
 extension BindCell {
   
-  public var viewModel: ViewModel? {
+  public var viewBinder: ViewBinder? {
     get {
       if let value = objc_getAssociatedObject(self,
-                                              &viewModelKey) as? ViewModel {
+                                              &viewBinderKey) as? ViewBinder {
         return value
       }
       
@@ -81,19 +81,19 @@ extension BindCell {
     
     set {
       objc_setAssociatedObject(self,
-                               &viewModelKey,
+                               &viewBinderKey,
                                newValue,
                                objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
       
-      self.binding(viewModel: newValue)
+      self.binding(viewBinder: newValue)
     }
   }
   
-  public func binding(viewModel: ViewModel?) {
-    if let viewModel = viewModel {
+  public func binding(viewBinder: ViewBinder?) {
+    if let viewBinder = viewBinder {
       disposeBag = DisposeBag()
-      state(viewModel: viewModel)
-      command(viewModel: viewModel)
+      state(viewBinder: viewBinder)
+      command(viewBinder: viewBinder)
     }
   }
 }

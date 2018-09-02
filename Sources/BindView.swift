@@ -23,14 +23,14 @@
 import RxSwift
 
 public protocol BindView: class {
-  associatedtype ViewModel
+  associatedtype ViewBinder
   
   var disposeBag: DisposeBag { get set }
-  var viewModel: ViewModel? { get set }
+  var viewBinder: ViewBinder? { get set }
   
-  func state(viewModel: ViewModel)
-  func command(viewModel: ViewModel)
-  func binding(viewModel: ViewModel?)
+  func state(viewBinder: ViewBinder)
+  func command(viewBinder: ViewBinder)
+  func binding(viewBinder: ViewBinder?)
 }
 
 // MARK: - disposeBag
@@ -63,15 +63,15 @@ extension BindView {
   }
 }
 
-// MARK: - viewModel
+// MARK: - viewBinder
 
-private var viewModelKey: String = "viewModel"
+private var viewBinderKey: String = "viewBinder"
 extension BindView {
   
-  public var viewModel: ViewModel? {
+  public var viewBinder: ViewBinder? {
     get {
       if let value = objc_getAssociatedObject(self,
-                                              &viewModelKey) as? ViewModel {
+                                              &viewBinderKey) as? ViewBinder {
         return value
       }
       
@@ -80,7 +80,7 @@ extension BindView {
     
     set {
       objc_setAssociatedObject(self,
-                               &viewModelKey,
+                               &viewBinderKey,
                                newValue,
                                objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
@@ -89,16 +89,16 @@ extension BindView {
         .asObservable()
         .map { _ in newValue }
         .subscribe(onNext: { [weak self] in
-          self?.binding(viewModel: $0)
+          self?.binding(viewBinder: $0)
         })
         .disposed(by: self.disposeBag)
     }
   }
   
-  public func binding(viewModel: ViewModel?) {
-    if let viewModel = viewModel {
-      state(viewModel: viewModel)
-      command(viewModel: viewModel)
+  public func binding(viewBinder: ViewBinder?) {
+    if let viewBinder = viewBinder {
+      state(viewBinder: viewBinder)
+      command(viewBinder: viewBinder)
     }
   }
 }
