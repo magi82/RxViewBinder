@@ -42,8 +42,8 @@ final class ViewController: UIViewController, BindView {
   
   func command(viewBinder: ViewBinder) {
     self.rx.methodInvoked(#selector(UIViewController.viewDidLoad))
-      .map { _ in ViewBinder.Command.fetch }
-      .bind(to: viewBinder.command)
+      .map { _ in () }
+      .bind(to: viewBinder.command.fetch)
       .disposed(by: self.disposeBag)
   }
   

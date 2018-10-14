@@ -28,8 +28,8 @@ import RxViewBinder
 
 final class SampleViewBinder: ViewBindable {
   
-  enum Command {
-    case fetch
+  struct Command {
+    let fetch: PublishRelay<Void> = PublishRelay()
   }
   
   struct Action {
@@ -45,18 +45,18 @@ final class SampleViewBinder: ViewBindable {
     }
   }
   
+  let command = Command()
   let action = Action()
   lazy var state = State(action: self.action)
   
+  init() {
+    binding(command: command)
+  }
+  
   func binding(command: Command) {
-    switch command {
-    case .fetch:
-      Observable<String>.just("test")
-        .bind(to: action.value)
-        .disposed(by: self.disposeBag)
-      
-      // Or you can simply send the stream without creating an observer.
-      // action.value.accept("test")
-    }
+    command.fetch.asObservable()
+      .map { "test" }
+      .bind(to: action.value)
+      .disposed(by: disposeBag)
   }
 }
