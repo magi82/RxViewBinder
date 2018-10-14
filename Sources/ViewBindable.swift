@@ -29,7 +29,7 @@ public protocol ViewBindable: class {
   associatedtype State
   
   var disposeBag: DisposeBag { get set }
-  var command: PublishRelay<Command> { get }
+  var command: Command { get }
   var action: Action { get }
   var state: State { get }
   
@@ -62,34 +62,6 @@ extension ViewBindable {
                                &disposeBagKey,
                                newValue,
                                objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-  }
-}
-
-// MARK: - command
-
-private var commandKey: String = "command"
-extension ViewBindable {
-  
-  public var command: PublishRelay<Command> {
-    get {
-      if let value = objc_getAssociatedObject(self,
-                                              &commandKey) as? PublishRelay<Command> {
-        return value
-      }
-      
-      let command: PublishRelay<Command> = PublishRelay()
-      command
-        .bind { [weak self] in
-          self?.binding(command: $0)
-        }
-        .disposed(by: self.disposeBag)
-      
-      objc_setAssociatedObject(self,
-                               &commandKey,
-                               command,
-                               objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-      return command
     }
   }
 }
