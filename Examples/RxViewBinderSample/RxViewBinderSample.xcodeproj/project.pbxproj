@@ -100,7 +100,6 @@
 				10FBBA0F205E07FB006F84D4 /* Frameworks */,
 				10FBBA10205E07FB006F84D4 /* Resources */,
 				2010DEF84E80F33D1961258E /* [CP] Embed Pods Frameworks */,
-				8DADA6FD617111055EE504A5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,21 +177,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxViewBinderSample/Pods-RxViewBinderSample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8DADA6FD617111055EE504A5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxViewBinderSample/Pods-RxViewBinderSample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3FAFA79A5E8564410BE252F /* [CP] Check Pods Manifest.lock */ = {

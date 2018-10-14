@@ -6,5 +6,5 @@ target 'RxViewBinderSample' do
   use_frameworks!
 
   # Pods for RxViewBinderSample
-  pod 'RxViewBinder', '~> 0.2.0'
+  pod 'RxViewBinder', :path => '../../'
 end

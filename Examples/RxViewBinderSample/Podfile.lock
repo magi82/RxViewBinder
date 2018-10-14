@@ -1,0 +1,28 @@
+PODS:
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
+  - RxViewBinder (1.0.0):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+
+DEPENDENCIES:
+  - RxViewBinder (from `../../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - RxCocoa
+    - RxSwift
+
+EXTERNAL SOURCES:
+  RxViewBinder:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxViewBinder: 562f62f389d513f12fe915ec147bd7b3ea4fa36e
+
+PODFILE CHECKSUM: fe79ec628d132083444e4158c9a0c162a875e125
+
+COCOAPODS: 1.5.3
