@@ -19,17 +19,17 @@ It is implemented as a reactive extension.
 
 - Create a ViewBinder class that implements ViewBindable.
 <br>Command, Action, State must be implemented.
-<br>Command is enum type.
-<br>Action, State is structure type.
+<br>Command, Action, State is structure or class type.
 
 *important!!*
-<br>You need to bind the action and state in the constructor of the state structure.
+<br>You need to bind the action and state in the constructor of the state.
+<br>You need to call the binding(command:) method in the constructor of viewBinder.
 
 ```swift
 final class SampleViewBinder: ViewBindable {
   
-  enum Command {
-    case fetch
+  struct Command {
+    let fetch: PublishRelay<Void> = PublishRelay() 
   }
   
   struct Action {
@@ -45,8 +45,13 @@ final class SampleViewBinder: ViewBindable {
     }
   }
   
+  let command = Command()
   let action = Action()
   lazy var state = State(action: self.action)
+  
+  init() {
+    binding(command: command)
+  }
 }
 ```
 
@@ -56,23 +61,10 @@ final class SampleViewBinder: ViewBindable {
 
 ```swift
   func binding(command: Command) {
-    switch command {
-    case .fetch:
-      Observable<String>.just("test")
-        .bind(to: action.value)
-        .disposed(by: self.disposeBag)
-    }
-  }
-```
-
-- Or you can simply send the stream without creating an observer.
-
-```swift
-  func binding(command: Command) {
-    switch command {
-    case .fetch:
-      action.value.accept("test")
-    }
+    command.fetch.asObservable()
+      .map { "test" }
+      .bind(to: action.value)
+      .disposed(by: disposeBag)
   }
 ```
 
@@ -116,8 +108,8 @@ or
 ```swift
   func command(viewBinder: ViewBinder) {
     self.rx.methodInvoked(#selector(UIViewController.viewDidLoad))
-      .map { _ in ViewBinder.Command.fetch }
-      .bind(to: viewBinder.command)
+      .map { _ in () }
+      .bind(to: viewBinder.command.fetch)
       .disposed(by: self.disposeBag)
   }
   
