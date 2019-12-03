@@ -13,7 +13,7 @@ It is implemented as a reactive extension.
 
 ## Flow
 
-<img src="https://github.com/magi82/RxViewBinder/blob/develop/Resources/flow.png?raw=true">
+<img src="https://github.com/magi82/RxViewBinder/blob/master/Resources/flow.png?raw=true">
 
 ## Usage (ViewBindable)
 
