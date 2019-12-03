@@ -1,6 +1,6 @@
 # RxViewBinder
 
-![Swift](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
 [![Platform](https://img.shields.io/cocoapods/p/RxViewBinder.svg?style=flat)](http://cocoapods.org/pods/RxViewBinder)
 [![Version](https://img.shields.io/cocoapods/v/RxViewBinder.svg?style=flat)](http://cocoapods.org/pods/RxViewBinder)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
