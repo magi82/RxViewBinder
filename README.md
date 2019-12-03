@@ -131,7 +131,7 @@ or
 
 ## Requirements
 
-- Swift 4.0+
+- Swift 5.0+
 - iOS 9.0+
 
 ## Installation
@@ -139,13 +139,13 @@ or
 - **For iOS 9+ projects** with [CocoaPods](https://cocoapods.org):
 
 ```ruby
-pod 'RxViewBinder', '~> 1.0.0'
+pod 'RxViewBinder', '~> 2.0.0'
 ```
 
 - **For iOS 9+ projects** with [Carthage](https://github.com/Carthage/Carthage):
 
 ```ruby
-github "magi82/RxViewBinder" ~> 1.0.0
+github "magi82/RxViewBinder" ~> 2.0.0
 ```
 
 ## Author
